@@ -1,32 +1,7 @@
----
-jupyter:
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
-  language_info:
-    codemirror_mode:
-      name: ipython
-      version: 3
-    file_extension: .py
-    mimetype: text/x-python
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython3
-    version: 3.10.12
-  nbformat: 4
-  nbformat_minor: 5
----
-
-::: {#b6159270-7138-4192-9d84-225125bb3941 .cell .markdown}
 # Fenotipagem de tomateiro resistente à requeima
-:::
 
-::: {#fb80969a-b54e-4389-af2b-872f0da7ea14 .cell .markdown}
 ## Introdução
-:::
 
-::: {#5c6aac25-689f-4d24-b357-3f25c70a2010 .cell .markdown}
 A fenotipagem é o processo de avaliação de características mensuráveis,
 como peso, formato dos frutos e estruturas vegetais. O uso de imagens
 capturadas em diferentes regiões do espectro eletromagnético permite
@@ -52,17 +27,11 @@ espectrais (RGB, infravermelho próximo (NIR) e Red Edge), foi utilizada
 para capturar as imagens. Os índices de vegetação, calculados a partir
 dessas bandas espectrais, foram processados e resultaram no *dataset*
 utilizado para prever a severidade da requeima.
-:::
 
-::: {#619887d0-cf79-4919-b201-c7082393373d .cell .markdown}
 ## Análise preditiva
-:::
 
-::: {#56a78b9b-4b69-4944-b100-e5f1bd8401bc .cell .markdown}
 ### Importamos as bibliotecas
-:::
 
-::: {#84493c54-2d74-4c97-8e56-131220b09e40 .cell .code execution_count="113"}
 ``` python
 import numpy as np
 import pandas as pd
@@ -79,31 +48,22 @@ from sklearn.model_selection import cross_val_score
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score 
 from sklearn.feature_selection import RFE 
 ```
-:::
 
-::: {#481c7009-2cbb-401a-aef0-2e0f8e5c2f14 .cell .markdown}
 ### Carregamos o dataset
-:::
 
-::: {#b572afef-bcbd-4df6-9b98-509061642a78 .cell .code execution_count="87"}
 ``` python
 df = pd.read_csv('dataset_sintetico.csv')
 
 X = df.drop(['id', 'Severidade'], axis = 1)
 Y = df['Severidade']
 ```
-:::
 
-::: {#fa455e88-3409-45db-9d52-b070f0a02319 .cell .markdown}
 ### Extraímos uma amostra dos dados
-:::
 
-::: {#53105cc1-b171-42a6-8598-a63bf4d908b2 .cell .code execution_count="88"}
 ``` python
 df.head()
 ```
 
-::: {.output .execute_result execution_count="88"}
 ```{=html}
 <div>
 <style scoped>
@@ -272,14 +232,9 @@ df.head()
 <p>5 rows × 22 columns</p>
 </div>
 ```
-:::
-:::
 
-::: {#aadfd512-5e18-415a-8d56-33137cd7803a .cell .markdown}
 ### Funções para ajuste dos modelos
-:::
 
-::: {#937a1407-f344-40b0-8398-ae59b0ebab0f .cell .code execution_count="89"}
 ``` python
 def scale_dataset(dataframe, oversample=False):
     X = dataframe[dataframe.columns[:-1]].values
@@ -292,9 +247,7 @@ def scale_dataset(dataframe, oversample=False):
     
     return data, X, y
 ```
-:::
 
-::: {#839c7e36-8f65-4002-a10f-8555762031e5 .cell .code execution_count="90"}
 ``` python
 def knn_regressor():
     neigh_score = []
@@ -310,9 +263,7 @@ def knn_regressor():
     knn = KNeighborsRegressor(n_neighbors=k)
     return knn
 ```
-:::
 
-::: {#bc67d650-e4de-4c9f-8a26-366150be69c0 .cell .code execution_count="91"}
 ``` python
 def svr_regressor():
     svr_scores = []
@@ -328,9 +279,7 @@ def svr_regressor():
     svr = SVR(C=best_c)
     return svr
 ```
-:::
 
-::: {#140b8a07-8b93-415f-b6b1-fd6743776bf9 .cell .code execution_count="92"}
 ``` python
 def decision_tree_regressor():
     tree_scores = []
@@ -346,9 +295,7 @@ def decision_tree_regressor():
     tree = DecisionTreeRegressor(max_depth=best_depth)
     return tree
 ```
-:::
 
-::: {#4dc5d0b0-e5d0-4eaa-ab59-86baad4c3294 .cell .code execution_count="93"}
 ``` python
 def random_forest_regressor():
     forest_scores = []
@@ -364,9 +311,7 @@ def random_forest_regressor():
     forest = RandomForestRegressor(n_estimators=best_n)
     return forest
 ```
-:::
 
-::: {#5bff90a1-7b95-4f84-9e4d-d80cd500e050 .cell .code execution_count="94"}
 ``` python
 def hist_gradient_boosting_regressor():
     hgb_scores = []
@@ -382,30 +327,20 @@ def hist_gradient_boosting_regressor():
     hgb = HistGradientBoostingRegressor(learning_rate=best_rate)
     return hgb
 ```
-:::
 
-::: {#86ba3a4e-46f1-429a-a577-68ecfce3928e .cell .code execution_count="116"}
 ``` python
 # modelos = {"Linear": LinearRegression, "KNN": KNeighborsRegressor, "SVR": svr_regressor, "Decision Tree": DecisionTreeRegressor, "Random Forest": RandomForestRegressor, "HGB": HistGradientBoostingRegressor }
 tunning = {"Linear": LinearRegression, "KNN": knn_regressor, "SVR": svr_regressor, "Decision Tree": decision_tree_regressor, "Random Forest": random_forest_regressor, "HGB": hist_gradient_boosting_regressor }
 ```
-:::
 
-::: {#e58be991-eb9e-43e6-80b4-737a1ad2b86c .cell .markdown}
 ### Separamos os dados de treinamento e teste
-:::
 
-::: {#1e870cc1-40b6-4f31-b32f-80105e223cf0 .cell .code execution_count="96"}
 ``` python
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
 ```
-:::
 
-::: {#4039a6a2-c2d4-40ce-b31f-602579fdbdfb .cell .markdown}
 ### Ajuste dos modelos sem pre-processamento ou seleção de \"features\"
-:::
 
-::: {#fc6c1054-1280-4129-a5ab-9426c9a80071 .cell .code execution_count="103"}
 ``` python
 # modelo = LinearRegression()
 for name in tunning:
@@ -421,7 +356,6 @@ for name in tunning:
     # print(X.shape)()
 ```
 
-::: {.output .stream .stdout}
     Modelo Linear
     0.8417215780173016
     =======================================
@@ -440,14 +374,9 @@ for name in tunning:
     HGB
     0.7665020843799575
     =======================================
-:::
-:::
 
-::: {#d2d531db-9158-47a8-b94b-01b1ba0aeb8f .cell .markdown}
 ### Função para seleção de \"features\"
-:::
 
-::: {#88f47847-f2e7-4bea-b27f-9a22ba18d8f0 .cell .code execution_count="111"}
 ``` python
 
 def best_k(X, Y):
@@ -468,13 +397,9 @@ def best_k(X, Y):
           
     return best_val
 ```
-:::
 
-::: {#0e0d822d-788f-43ee-bbeb-2aa81d681445 .cell .markdown}
 ### Ajustes dos modelos com pré-processamento e seleção de \"features\"
-:::
 
-::: {#1c079ae3-6cb4-4bf2-a1da-c56911160fb7 .cell .code execution_count="115"}
 ``` python
 # Padronizando os dados
 X = StandardScaler().fit_transform(X)
@@ -508,7 +433,6 @@ print("=======================================")
 print(f"Melhor modelo: {best_model_name} apresentou R2: {best_score}")
 ```
 
-::: {.output .stream .stdout}
     Model: Modelo Linear, Mean R2 Score: 0.7850270627975064
     Model: KNN, Mean R2 Score: 0.8590771136164085
     Model: SVR, Mean R2 Score: 0.7869646771349614
@@ -517,14 +441,9 @@ print(f"Melhor modelo: {best_model_name} apresentou R2: {best_score}")
     Model: HGB, Mean R2 Score: 0.3188519070274789
     =======================================
     Melhor modelo: KNN apresentou R2: 0.8590771136164085
-:::
-:::
 
-::: {#33b6c940-4ea8-4222-92da-a87acde2de94 .cell .markdown}
 # Avaliação do melhor modelo no conjunto de teste
-:::
 
-::: {#19f04f8d-d07a-485e-b3fc-a878cafa37b2 .cell .code execution_count="118"}
 ``` python
 best_model.fit(X_train, Y_train)
 y_pred = best_model.predict(X_test)
@@ -539,10 +458,8 @@ print('mse:', mse)
 print('mae:', mae)
 ```
 
-::: {.output .stream .stdout}
     Avaliação do modelo final com os dados de teste
     r2: 0.9623229358546539
     mse: 4.757336912601418
     mae: 3.79435
-:::
-:::
+
