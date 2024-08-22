@@ -79,19 +79,6 @@ df.head()
 ### Funções para ajuste dos modelos
 
 ``` python
-def scale_dataset(dataframe, oversample=False):
-    X = dataframe[dataframe.columns[:-1]].values
-    y = dataframe[dataframe.columns[-1]].values
-    
-    scaler = StandardScaler()
-    X = scaler.fit_transform(X)
-    
-    data = np.hstack((X, np.reshape(y, (-1, 1))))
-    
-    return data, X, y
-```
-
-``` python
 def knn_regressor():
     neigh_score = []
     for i in range(1, 30):
