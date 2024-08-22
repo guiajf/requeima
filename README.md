@@ -1,9 +1,5 @@
 # Machine Learning e fenotipagem multiespectral 
 
-## Introdução
-
-### Fenotipagem
-
 A fenotipagem é o processo de avaliação de características mensuráveis,
 como peso, formato dos frutos e estruturas vegetais. O uso de imagens
 capturadas em diferentes regiões do espectro eletromagnético permite
