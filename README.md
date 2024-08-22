@@ -312,7 +312,6 @@ Código adaptado de: https://github.com/MMagdys/MAGIC-Gamma-Telescope-Classifica
 
 **Referências:**
 
-Felipe de Oliveira Dias,Domingos Sarvio Magalhães Valente, Carolina Tavares Oliveira,Françoise Dalprá Dariva,Mariane Gonçalves Ferreira (2023). *Remote sensing and machine learning techniques for high throughput phenotyping of late blight-resistant tomato plants in open field trials*
-Pages 1900-1921 | Received 27 Sep 2022, Accepted 12 Mar 2023, Published online: 03 Apr 2023.
-https://doi.org/10.1080/01431161.2023.2192878
+Dias, Felipe & Valente, Domingos & Oliveira, Carolina & Dariva, Françoise & Copati, Mariane. (2023). Remote sensing and machine learning techniques for high throughput phenotyping of late blight-resistant tomato plants in open field trials. International Journal of Remote Sensing. 44. 1900-1921. 10.1080/01431161.2023.2192878. 
+
 
