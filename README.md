@@ -172,8 +172,8 @@ def hist_gradient_boosting_regressor():
 ```
 
 ``` python
-# modelos = {"Linear": LinearRegression, "KNN": KNeighborsRegressor, "SVR": svr_regressor, "Decision Tree": DecisionTreeRegressor, "Random Forest": RandomForestRegressor, "HGB": HistGradientBoostingRegressor }
-tunning = {"Linear": LinearRegression, "KNN": knn_regressor, "SVR": svr_regressor, "Decision Tree": decision_tree_regressor, "Random Forest": random_forest_regressor, "HGB": hist_gradient_boosting_regressor }
+# modelos = {"Regressão Linear": LinearRegression, "KNN": KNeighborsRegressor, "SVR": svr_regressor, "Decision Tree": DecisionTreeRegressor, "Random Forest": RandomForestRegressor, "HGB": HistGradientBoostingRegressor }
+tunning = {"Regressão Linear": LinearRegression, "KNN": knn_regressor, "SVR": svr_regressor, "Decision Tree": decision_tree_regressor, "Random Forest": random_forest_regressor, "HGB": hist_gradient_boosting_regressor }
 ```
 
 ### Separamos os dados de treinamento e teste
@@ -199,7 +199,7 @@ for name in tunning:
     # print(X.shape)()
 ```
 
-    Modelo Linear
+    Regressão Linear
     0.8417215780173016
     =======================================
     KNN
@@ -276,7 +276,7 @@ print("=======================================")
 print(f"Melhor modelo: {best_model_name} apresentou R2: {best_score}")
 ```
 
-    Model: Modelo Linear, Mean R2 Score: 0.7850270627975064
+    Model: Regressão Linear, Mean R2 Score: 0.7850270627975064
     Model: KNN, Mean R2 Score: 0.8590771136164085
     Model: SVR, Mean R2 Score: 0.7869646771349614
     Model: Decision Tree, Mean R2 Score: 0.7055605805910499
