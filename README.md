@@ -1,6 +1,8 @@
-# Fenotipagem de tomateiro resistente à requeima
+# Machine Learning e fenotipagem multiespectral 
 
 ## Introdução
+
+### Fenotipagem
 
 A fenotipagem é o processo de avaliação de características mensuráveis,
 como peso, formato dos frutos e estruturas vegetais. O uso de imagens
@@ -8,11 +10,15 @@ capturadas em diferentes regiões do espectro eletromagnético permite
 estimar medidas essenciais, como altura, largura e número de folhas,
 para monitorar o crescimento vegetativo.
 
+### Requeima
+
 A requeima, ou *mela*, é uma doença causada pelo oomiceto *Phytophthora
 infestans*, que afeta culturas de tomate. Embora possa causar a perda
 total da cultura, existem cultivares resistentes à doença. Experimentos
 com diferentes variedades podem avaliar a severidade da requeima em
 diversas cultivares, utilizando imagens de drone.
+
+### Cultivares
 
 De acordo com o Código Internacional de Nomenclatura de Plantas
 Cultivadas (**ICNCP**), uma cultivar é definida como um \"*conjunto de
@@ -21,6 +27,8 @@ atributos*\". Dada a variedade de cultivares disponíveis, um experimento
 foi conduzido com o uso de imagens de drone, que foram processadas e
 analisadas com ferramentas de *machine learning* para economizar tempo e
 recursos.
+
+### Índices de vegetação
 
 Uma câmera multiespectral **MicaSense**, equipada com cinco bandas
 espectrais (RGB, infravermelho próximo (NIR) e Red Edge), foi utilizada
