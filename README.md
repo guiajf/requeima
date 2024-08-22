@@ -306,3 +306,7 @@ print('mae:', mae)
     mse: 4.757336912601418
     mae: 3.79435
 
+**Fonte:**
+
+Código adaptado de: https://github.com/MMagdys/MAGIC-Gamma-Telescope-Classification/blob/master/Data%20Classification.ipynb
+
