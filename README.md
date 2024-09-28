@@ -272,7 +272,7 @@ print(f"Melhor modelo: {best_model_name} apresentou R2: {best_score}")
     =======================================
     Melhor modelo: KNN apresentou R2: 0.8590771136164085
 
-# Avaliação do melhor modelo no conjunto de teste
+# Avaliação do melhor modelo, com o conjunto de teste
 
 ``` python
 best_model.fit(X_train, Y_train)
